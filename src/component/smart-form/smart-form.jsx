@@ -29,8 +29,6 @@ const SmartForm = ({ updateScreenName }) => {
   return (
     <S.SmartForm abc={position}>
       <S.Wrapper>
-        {/* <S.Title>Twitter Search App</S.Title> */}
-
         <Formik
           initialValues={F.initialValues}
           validationSchema={F.validationSchema}

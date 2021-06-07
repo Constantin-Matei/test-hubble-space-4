@@ -11,7 +11,7 @@ const SmartFormikForm = styled(Form)`
   display: grid;
   grid-gap: 16px;
   grid-auto-flow: column;
-  align-items: baseline;
+  align-items: center;
 `
 
 const Title = styled.h1`
@@ -26,7 +26,7 @@ const SmartForm = styled.div`
   display: flex;
   justify-content: center;
   position: fixed;
-  bottom: 1rem;
+  ${({ abc }) => abc}: 1rem;
   width: 100%;
 `
 

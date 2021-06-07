@@ -1,22 +1,29 @@
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import S from "./smart-form.style"
 import F from "./smart-form.form"
 import { Field, Formik } from "formik"
 import { TextField } from "formik-material-ui"
-import { Button } from "@material-ui/core"
+import { Button, ButtonGroup } from "@material-ui/core"
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward"
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward"
 
 const SmartForm = ({ updateScreenName }) => {
-  const screenNameRef = useRef
+  const [position, setPosition] = useState("bottom")
+  const screenNameRef = useRef(null)
+
   const onSubmit = (values, { resetForm }) => {
-    console.log("testing on submit")
-    console.log(values)
     updateScreenName(values.screenName)
     resetForm()
     screenNameRef.current.focus()
   }
 
+  const switchPosition = (pos) => {
+    setPosition(pos)
+    screenNameRef.current.focus()
+  }
+
   return (
-    <S.SmartForm>
+    <S.SmartForm abc={position}>
       <S.Wrapper>
         {/* <S.Title>Twitter Search App</S.Title> */}
 
@@ -30,6 +37,7 @@ const SmartForm = ({ updateScreenName }) => {
               <Field
                 type="text"
                 component={TextField}
+                inputRef={screenNameRef}
                 name="screenName"
                 label="Screen Name"
                 placeholder="Type a twitter profile and hit Enter"
@@ -55,6 +63,26 @@ const SmartForm = ({ updateScreenName }) => {
               >
                 Reset
               </Button>
+
+              <ButtonGroup
+                size="small"
+                orientation="vertical"
+                variant="contained"
+              >
+                <Button
+                  onClick={() => switchPosition("top")}
+                  color={position === "top" ? "primary" : "default"}
+                >
+                  <ArrowUpwardIcon />
+                </Button>
+
+                <Button
+                  onClick={() => switchPosition("bottom")}
+                  color={position === "bottom" ? "primary" : "default"}
+                >
+                  <ArrowDownwardIcon />
+                </Button>
+              </ButtonGroup>
             </S.SmartFormikForm>
           )}
         </Formik>

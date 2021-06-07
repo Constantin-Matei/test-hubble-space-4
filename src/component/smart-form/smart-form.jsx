@@ -11,6 +11,10 @@ const SmartForm = ({ updateScreenName }) => {
   const [position, setPosition] = useState("bottom")
   const screenNameRef = useRef(null)
 
+  const onReset = () => {
+    screenNameRef.current.focus()
+  }
+
   const onSubmit = (values, { resetForm }) => {
     updateScreenName(values.screenName)
     resetForm()
@@ -30,6 +34,7 @@ const SmartForm = ({ updateScreenName }) => {
         <Formik
           initialValues={F.initialValues}
           validationSchema={F.validationSchema}
+          onReset={onReset}
           onSubmit={onSubmit}
         >
           {({ isValid }) => (

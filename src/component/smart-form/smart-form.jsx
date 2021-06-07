@@ -39,6 +39,7 @@ const SmartForm = ({ updateScreenName }) => {
             <S.SmartFormikForm>
               <Field
                 type="text"
+                autoComplete="off"
                 component={TextField}
                 inputRef={screenNameRef}
                 name="screenName"
